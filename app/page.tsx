@@ -68,7 +68,7 @@ const ventures = [
     name: "ALGOrp",
     category: "ניתוח דוחות מסחר",
     description:
-      "כלי מקצועי לניתוח דוחות מסחר מ־MT4, ‏MT5 ו־TradingView, עם מדדי ביצועים, סיכון ותובנות AI.",
+      "מערכת ניתוח דוחות מסחר של רוב הפלטפורמות הגדולות, עם מדדי ביצועים, ניתוח סיכון ותובנות AI.",
     logo: "",
     href: "https://algorp.com/",
     className: "algorp",
