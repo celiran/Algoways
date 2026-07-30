@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import CookieSettingsButton from "../components/CookieSettingsButton";
 import ContactForm from "../components/ContactForm";
 import RiskFooterNotice from "../components/RiskFooterNotice";
 
@@ -74,13 +73,6 @@ export default function ContactPage() {
           </span>
           <RiskFooterNotice />
         </div>
-        <nav aria-label="קישורי עמוד יצירת קשר">
-          <Link href="/">דף הבית</Link>
-          <Link href="/about">אודות</Link>
-          <Link href="/privacy">מדיניות פרטיות</Link>
-          <Link href="/accessibility">נגישות</Link>
-          <CookieSettingsButton />
-        </nav>
       </footer>
     </main>
   );

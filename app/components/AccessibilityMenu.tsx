@@ -85,10 +85,12 @@ export default function AccessibilityMenu() {
         const notice = document.querySelector<HTMLElement>(".legacyNotice");
         const footerBottom =
           document.querySelector<HTMLElement>(".footerBottom");
+        const globalLegalBar =
+          document.querySelector<HTMLElement>(".globalLegalBar");
         if (!widget) return;
 
         const defaultBottom = window.innerWidth <= 680 ? 82 : 96;
-        const protectedTop = [notice, footerBottom]
+        const protectedTop = [notice, footerBottom, globalLegalBar]
           .map((element) => element?.getBoundingClientRect().top)
           .filter(
             (top): top is number =>

@@ -1,4 +1,3 @@
-import CookieSettingsButton from "./components/CookieSettingsButton";
 import JsonLd from "./components/JsonLd";
 import RiskFooterNotice from "./components/RiskFooterNotice";
 import { seoConfig } from "./seo-config";
@@ -515,10 +514,8 @@ export default function Home() {
         <div className="footerNav" aria-label="קישורי אתר">
           <a href="#portfolio">האתרים שלנו</a>
           <a href="#resources">שירותים נוספים</a>
-          <a href="/about">אודות</a>
           <a href="#faq">שאלות נפוצות</a>
           <a href="/contact">צור קשר</a>
-          <CookieSettingsButton />
         </div>
         <div className="footerBottom">
           <p className="footerCopyright">

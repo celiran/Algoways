@@ -208,6 +208,50 @@ test("shows privacy choices on every page and documents optional analytics", asy
   assert.match(privacyHtml, /Cloudflare Turnstile/);
 });
 
+test("shows the complete legal navigation on every page", async () => {
+  const worker = await getWorker();
+  const routes = [
+    "/",
+    "/about",
+    "/contact",
+    "/accessibility",
+    "/copyright",
+    "/privacy",
+    "/risk-disclosure",
+    "/terms",
+  ];
+  const requiredLinks = [
+    ['href="/"', "דף הבית"],
+    ['href="/about"', "אודות"],
+    ['href="/risk-disclosure"', "אזהרת סיכון"],
+    ['href="/terms"', "תנאי שימוש"],
+    ['href="/copyright"', "זכויות יוצרים"],
+    ['href="/privacy"', "מדיניות פרטיות"],
+    ['href="/accessibility"', "הצהרת נגישות"],
+  ];
+
+  for (const route of routes) {
+    const response = await worker.fetch(
+      new Request(`http://localhost${route}`, {
+        headers: { accept: "text/html" },
+      }),
+      runtimeEnv(),
+      executionContext,
+    );
+    const html = (await response.text()).replace(/\s+/g, " ");
+
+    assert.equal(response.status, 200, route);
+    assert.match(html, /class="globalLegalBar"/, route);
+    assert.match(html, /מידע משפטי, פרטיות ונגישות/, route);
+
+    for (const [href, label] of requiredLinks) {
+      assert.ok(html.includes(href), `${route}: ${href}`);
+      assert.ok(html.includes(label), `${route}: ${label}`);
+    }
+    assert.ok(html.includes("הגדרות פרטיות"), route);
+  }
+});
+
 test("publishes the technical SEO and AEO discovery files", async () => {
   const worker = await getWorker();
   const sitemapResponse = await worker.fetch(

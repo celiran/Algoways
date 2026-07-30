@@ -938,6 +938,34 @@ img {
   line-height: 1.65;
 }
 
+.globalLegalBar {
+  padding: 20px 60px 24px;
+  border-top: 1px solid var(--line-dark);
+  background: #050c13;
+  color: var(--steel);
+  font-size: 0.69rem;
+}
+
+.globalLegalBar nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px 28px;
+}
+
+.globalLegalBar a,
+.globalLegalBar button {
+  transition: color 180ms ease;
+}
+
+.globalLegalBar a:hover,
+.globalLegalBar a:focus-visible,
+.globalLegalBar button:hover,
+.globalLegalBar button:focus-visible {
+  color: var(--paper);
+}
+
 /* Contact page */
 .contactPage {
   min-height: 100svh;
@@ -2145,7 +2173,11 @@ html.a11y-reduce-motion *::after {
     padding: 30px 20px 55px;
   }
 
-  .legalFooter nav {
+  .globalLegalBar {
+    padding: 22px 20px 70px;
+  }
+
+  .globalLegalBar nav {
     justify-content: flex-start;
     row-gap: 14px;
   }

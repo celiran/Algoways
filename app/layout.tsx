@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import AccessibilityMenu from "./components/AccessibilityMenu";
 import CookieNotice from "./components/CookieNotice";
+import GlobalLegalNav from "./components/GlobalLegalNav";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import JsonLd from "./components/JsonLd";
 import { mainSiteLinks, seoConfig } from "./seo-config";
@@ -164,6 +165,7 @@ export default function RootLayout({
       <body className={`${bodyFont.variable} ${displayFont.variable}`}>
         <JsonLd data={[organizationSchema, websiteSchema]} />
         {children}
+        <GlobalLegalNav />
         <GoogleAnalytics />
         <CookieNotice />
         <AccessibilityMenu />
