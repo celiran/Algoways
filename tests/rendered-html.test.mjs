@@ -51,6 +51,9 @@ test("server-renders the ALGOWAYS homepage", async () => {
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /FAQPage/);
   assert.match(html, /rel="canonical" href="https:\/\/algoways\.co\.il\/"/);
+  assert.match(html, /אנחנו עובדים מתוך מומחיות ממוקדת/);
+  assert.doesNotMatch(html, /ALGOWAYS \/ OPERATING PRINCIPLES/);
+  assert.doesNotMatch(html, /איך אנחנו עובדים/);
   assert.doesNotMatch(html, /googletagmanager\.com/);
 });
 

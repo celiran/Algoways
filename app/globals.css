@@ -234,12 +234,24 @@ img {
   gap: 60px;
 }
 
-.heroCopy p {
+.heroCopyText {
   max-width: 455px;
+}
+
+.heroCopy p {
   margin: 0;
   color: var(--mist);
   font-size: 1.02rem;
   line-height: 1.75;
+}
+
+.heroCopy .heroPrinciples {
+  margin-top: 17px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(119, 174, 186, 0.2);
+  color: var(--steel);
+  font-size: 0.76rem;
+  line-height: 1.7;
 }
 
 .heroCopy a {
@@ -338,7 +350,6 @@ img {
 }
 
 .sectionIntro > div,
-.groupAside,
 .contactInner > div:first-child {
   display: flex;
   align-items: center;
@@ -359,7 +370,6 @@ img {
 }
 
 .sectionIntro h2,
-.group h2,
 .contact h2 {
   margin: 0;
   font-size: clamp(3.4rem, 5.6vw, 6.2rem);
@@ -369,7 +379,6 @@ img {
 }
 
 .sectionIntro h2 span,
-.group h2 span,
 .contact h2 span {
   color: var(--cyan);
   font-weight: 300;
@@ -614,70 +623,6 @@ img {
 .resourceLinks a > span:last-child {
   flex: 0 0 auto;
   color: var(--cyan);
-}
-
-.group {
-  background: var(--paper);
-  color: var(--navy);
-}
-
-.groupInner {
-  padding-block: clamp(100px, 11vw, 165px);
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.group .sectionKicker {
-  color: #5b6b73;
-}
-
-.groupStatement {
-  padding-bottom: 85px;
-}
-
-.terminalText {
-  direction: ltr;
-  text-align: right;
-  margin: 0 0 35px;
-  color: #70818a;
-  font-family: ui-monospace, "Cascadia Code", monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-}
-
-.principles {
-  grid-column: 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line-light);
-}
-
-.principles div {
-  min-height: 230px;
-  padding: 28px 26px 0;
-  border-left: 1px solid var(--line-light);
-}
-
-.principles div:last-child {
-  border-left: 0;
-}
-
-.principles span {
-  color: #66828e;
-  font-family: ui-monospace, "Cascadia Code", monospace;
-  font-size: 0.68rem;
-}
-
-.principles h3 {
-  margin: 55px 0 14px;
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
-.principles p {
-  margin: 0;
-  color: #5a6970;
-  line-height: 1.7;
 }
 
 .faqSection {
@@ -1801,8 +1746,7 @@ html.a11y-high-contrast {
   --line-light: rgba(0, 0, 0, 0.68);
 }
 
-html.a11y-high-contrast .legalPage,
-html.a11y-high-contrast .group {
+html.a11y-high-contrast .legalPage {
   background: #fff;
   color: #000;
 }
@@ -1906,7 +1850,6 @@ html.a11y-reduce-motion *::after {
     grid-template-columns: 1fr;
   }
 
-  .groupInner,
   .contactInner,
   .faqInner {
     grid-template-columns: 1fr;
@@ -1922,13 +1865,8 @@ html.a11y-reduce-motion *::after {
     padding-left: 0;
   }
 
-  .groupStatement,
   .contactContent {
     margin-top: 70px;
-  }
-
-  .principles {
-    grid-column: 1;
   }
 
   .legalContent {
@@ -2029,14 +1967,12 @@ html.a11y-reduce-motion *::after {
   }
 
   .sectionIntro h2,
-  .group h2,
   .contact h2 {
     font-size: clamp(3rem, 13vw, 4.7rem);
   }
 
   .portfolio,
   .resourcesInner,
-  .groupInner,
   .faqInner {
     padding-block: 88px;
   }
@@ -2084,20 +2020,6 @@ html.a11y-reduce-motion *::after {
 
   .resourceHeading small {
     max-width: 215px;
-  }
-
-  .principles {
-    grid-template-columns: 1fr;
-  }
-
-  .principles div {
-    min-height: 180px;
-    border-bottom: 1px solid var(--line-light);
-    border-left: 0;
-  }
-
-  .principles h3 {
-    margin-top: 38px;
   }
 
   .contactInner {

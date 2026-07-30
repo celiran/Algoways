@@ -276,10 +276,16 @@ export default function Home() {
             <span>טכנולוגיה, מסחר ואנשים.</span>
           </h1>
           <div className="heroCopy">
-            <p>
-              ALGOWAYS מרכזת את האתרים, הכלים והשירותים שלנו בנקודת המפגש שבין
-              תוכנה, תשתיות, מידע וידע מקצועי לעולם המסחר.
-            </p>
+            <div className="heroCopyText">
+              <p>
+                ALGOWAYS מרכזת את האתרים, הכלים והשירותים שלנו בנקודת המפגש
+                שבין תוכנה, תשתיות, מידע וידע מקצועי לעולם המסחר.
+              </p>
+              <p className="heroPrinciples">
+                אנחנו עובדים מתוך מומחיות ממוקדת, מחברים בין תוכנה, תשתית
+                ומידע, ובונים פתרונות יציבים מתוך חשיבה לטווח ארוך.
+              </p>
+            </div>
             <a href="#portfolio">
               לכל הפעילויות
               <span aria-hidden="true">↓</span>
@@ -412,49 +418,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="group" id="group">
-        <div className="sectionShell groupInner">
-          <div className="groupAside">
-            <span className="sectionNumber">03</span>
-            <span className="sectionKicker">איך אנחנו עובדים</span>
-          </div>
-
-          <div className="groupStatement">
-            <p className="terminalText">ALGOWAYS / OPERATING PRINCIPLES</p>
-            <h2>
-              ניסיון מעשי,
-              <br />
-              חשיבה טכנולוגית,
-              <br />
-              <span>ביצוע מדויק.</span>
-            </h2>
-          </div>
-
-          <div className="principles">
-            <div>
-              <span>01</span>
-              <h3>מומחיות ממוקדת</h3>
-              <p>כל פעילות נשענת על ידע מקצועי עמוק ומטרה ברורה.</p>
-            </div>
-            <div>
-              <span>02</span>
-              <h3>חיבור בין התחומים</h3>
-              <p>תוכנה, תשתית ומידע עובדים יחד כדי לייצר פתרון שלם ורציף.</p>
-            </div>
-            <div>
-              <span>03</span>
-              <h3>חשיבה לטווח ארוך</h3>
-              <p>אנחנו בונים שירות יציב שנשען על ניסיון ושיפור מתמשך.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="faqSection" id="faq">
         <div className="sectionShell faqInner">
           <div className="sectionIntro faqIntro">
             <div>
-              <span className="sectionNumber">04</span>
+              <span className="sectionNumber">03</span>
               <span className="sectionKicker">שאלות נפוצות</span>
             </div>
             <h2>
@@ -486,7 +454,7 @@ export default function Home() {
         <div className="contactGrid" aria-hidden="true" />
         <div className="sectionShell contactInner">
           <div>
-            <span className="sectionNumber">05</span>
+            <span className="sectionNumber">04</span>
             <span className="sectionKicker">יצירת קשר</span>
           </div>
           <div className="contactContent">
