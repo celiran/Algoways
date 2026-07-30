@@ -1,0 +1,31 @@
+# ALGOWAYS
+
+> ALGOWAYS הוא מרכז האתרים והשירותים שלנו בתחומי טכנולוגיה פיננסית, מסחר אלגוריתמי, תשתיות, כלים, לימודים וקהילות.
+
+האתר נועד לעזור לסוחרים, מפתחים וגופים מקצועיים למצוא את הפעילות הרלוונטית עבורם. ALGOWAYS אינו אתר לייעוץ השקעות ואינו ממליץ לרכוש או למכור ניירות ערך.
+
+## משאבים עיקריים
+
+- [דף הבית](https://algoways.co.il/): סקירה של האתרים, המותגים והשירותים המרכזיים.
+- [אודות ALGOWAYS](https://algoways.co.il/about): תחומי הפעילות, דרך העבודה והקשר בין המותגים.
+- [יצירת קשר](https://algoways.co.il/contact): טופס קצר לפנייה בנושא שירות, שיתוף פעולה או שאלה.
+- [אזהרת סיכון](https://algoways.co.il/risk-disclosure): הבהרה משפטית בנוגע לתוכן פיננסי ומסחרי.
+
+## אתרים ושירותים
+
+- [AutoSysFX](https://www.autosysfx.com/blog/): פיתוח מערכות מסחר אוטומטיות, רובוטים וכלים מותאמים.
+- [Algotra](https://www.algotra.com/algotra/): חיבור בין אלגוריתמים, מערכות מסחר ומשקיעים.
+- [AlgoServers](https://www.algoservers.com/site/): שרתי VPS ותשתיות למסחר אוטומטי.
+- [ScanFin](https://www.scanfin.com/): כלים ושירותים לעבודה עם מידע פיננסי.
+- [CapitalMind](https://capitalmind.co.il/): ידע, קורסים ותוכן מקצועי למסחר אלגוריתמי.
+- [AlgoCourses](https://algocourses.com/): קורסים בעברית לפיתוח מערכות מסחר אוטומטיות.
+- [ALGOrp](https://algorp.com/): ניתוח דוחות מסחר ומדדי ביצועים.
+- [AlgoTradeCrypto](https://algotradecrypto.com/): פיתוח מערכות ורובוטי מסחר לקריפטו.
+
+## Optional
+
+- [מידע מורחב למנועי תשובות](https://algoways.co.il/llms-full.txt)
+- [מדיניות פרטיות](https://algoways.co.il/privacy)
+- [תנאי שימוש](https://algoways.co.il/terms)
+- [זכויות יוצרים](https://algoways.co.il/copyright)
+- [הצהרת נגישות](https://algoways.co.il/accessibility)

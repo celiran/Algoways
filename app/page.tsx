@@ -1,4 +1,7 @@
+import CookieSettingsButton from "./components/CookieSettingsButton";
+import JsonLd from "./components/JsonLd";
 import RiskFooterNotice from "./components/RiskFooterNotice";
+import { seoConfig } from "./seo-config";
 
 const ventures = [
   {
@@ -166,6 +169,72 @@ const resourceGroups = [
   },
 ];
 
+const faqItems = [
+  {
+    question: "מה אפשר למצוא באתר ALGOWAYS?",
+    answer:
+      "ALGOWAYS הוא מרכז רשמי לכל האתרים והשירותים שלנו בתחומי פיתוח מערכות מסחר, תשתיות VPS, כלים פיננסיים, לימודים וקהילות. כל כרטיס באתר מפנה ישירות לפעילות הרלוונטית.",
+  },
+  {
+    question: "אילו שירותים מרכזיים זמינים דרך ALGOWAYS?",
+    answer:
+      "אפשר להגיע מכאן לפיתוח רובוטים ומערכות מסחר אוטומטיות, שרתים למסחר, כלי ניתוח דוחות וביצועים, קורסים מקצועיים ושירותים משלימים לסוחרים ולמפתחים.",
+  },
+  {
+    question: "למי מתאימים האתרים והשירותים?",
+    answer:
+      "הפעילויות מיועדות לסוחרים פרטיים, מפתחים, יזמים וגופים מקצועיים שמחפשים טכנולוגיה, תשתית או ידע מעשי בתחום המסחר האלגוריתמי.",
+  },
+  {
+    question: "האם התוכן באתר הוא ייעוץ השקעות?",
+    answer:
+      "לא. האתר מרכז מידע וקישורים ואינו מספק ייעוץ השקעות, המלצה לרכישה או מכירה של ניירות ערך, או תחליף לייעוץ פיננסי המותאם באופן אישי.",
+  },
+  {
+    question: "איך יוצרים קשר עם ALGOWAYS?",
+    answer:
+      "אפשר לשלוח הודעה קצרה דרך עמוד יצירת הקשר באתר. בפנייה ניתן לציין את השירות שמעניין אתכם, שאלה מקצועית או הצעה לשיתוף פעולה.",
+  },
+];
+
+const homepageSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${seoConfig.siteUrl}/#homepage`,
+    url: seoConfig.siteUrl,
+    name: seoConfig.title,
+    description: seoConfig.description,
+    inLanguage: seoConfig.language,
+    isPartOf: {
+      "@id": `${seoConfig.siteUrl}/#website`,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: ventures.length,
+      itemListElement: ventures.map((venture, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: venture.name,
+        description: venture.description,
+        url: venture.href,
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+];
+
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
@@ -173,6 +242,7 @@ function Arrow() {
 export default function Home() {
   return (
     <main>
+      <JsonLd data={homepageSchema} />
       <header className="siteHeader">
         <a className="logoPlate" href="#top" aria-label="ALGOWAYS — ראש העמוד">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
@@ -184,7 +254,7 @@ export default function Home() {
         <nav aria-label="ניווט ראשי">
           <a href="#portfolio">האתרים שלנו</a>
           <a href="#resources">שירותים נוספים</a>
-          <a href="#group">אודות</a>
+          <a href="/about">אודות</a>
           <a className="headerContact" href="/contact">
             צור קשר
           </a>
@@ -201,6 +271,7 @@ export default function Home() {
         <div className="heroContent">
           <p className="heroEyebrow">טכנולוגיה מאחורי שווקים חכמים</p>
           <h1>
+            <small className="heroBrandName">ALGOWAYS</small>
             מחברים בין
             <br />
             <span>טכנולוגיה, מסחר ואנשים.</span>
@@ -380,11 +451,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="faqSection" id="faq">
+        <div className="sectionShell faqInner">
+          <div className="sectionIntro faqIntro">
+            <div>
+              <span className="sectionNumber">04</span>
+              <span className="sectionKicker">שאלות נפוצות</span>
+            </div>
+            <h2>
+              תשובות קצרות
+              <br />
+              <span>לפני שמתחילים.</span>
+            </h2>
+            <p>
+              המידע המרכזי על ALGOWAYS, תחומי הפעילות והדרך הנכונה להגיע
+              לשירות שמתאים לכם.
+            </p>
+          </div>
+
+          <div className="faqList">
+            {faqItems.map((item) => (
+              <details key={item.question}>
+                <summary>
+                  <span>{item.question}</span>
+                  <span aria-hidden="true">+</span>
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="contact" id="contact">
         <div className="contactGrid" aria-hidden="true" />
         <div className="sectionShell contactInner">
           <div>
-            <span className="sectionNumber">04</span>
+            <span className="sectionNumber">05</span>
             <span className="sectionKicker">יצירת קשר</span>
           </div>
           <div className="contactContent">
@@ -412,7 +515,10 @@ export default function Home() {
         <div className="footerNav" aria-label="קישורי אתר">
           <a href="#portfolio">האתרים שלנו</a>
           <a href="#resources">שירותים נוספים</a>
+          <a href="/about">אודות</a>
+          <a href="#faq">שאלות נפוצות</a>
           <a href="/contact">צור קשר</a>
+          <CookieSettingsButton />
         </div>
         <div className="footerBottom">
           <p className="footerCopyright">

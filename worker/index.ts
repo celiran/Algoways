@@ -18,6 +18,7 @@ interface Env {
   CONTACT_FROM_EMAIL?: string;
   TURNSTILE_SITE_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
+  GOOGLE_ANALYTICS_ID?: string;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -233,6 +234,18 @@ const worker = {
 
     if (url.pathname === "/api/contact") {
       return handleContactRequest(request, env);
+    }
+
+    if (url.pathname === "/api/site-config") {
+      if (request.method !== "GET") {
+        return json({ message: "שיטת הבקשה אינה נתמכת." }, 405);
+      }
+      const analyticsId = cleanText(env.GOOGLE_ANALYTICS_ID, 32);
+      return json({
+        googleAnalyticsId: /^G-[A-Z0-9]+$/i.test(analyticsId)
+          ? analyticsId.toUpperCase()
+          : null,
+      });
     }
 
     return handler.fetch(request, env, ctx);

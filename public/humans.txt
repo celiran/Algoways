@@ -1,0 +1,14 @@
+ALGOWAYS
+Technology / Markets / Infrastructure
+
+Website: https://algoways.co.il/
+Language: Hebrew
+Location: Beer Sheva, Israel
+Contact: https://algoways.co.il/contact
+
+Technology:
+- Next.js-compatible application
+- vinext on Cloudflare
+- Accessible RTL interface
+
+Last update: 2026-07-30

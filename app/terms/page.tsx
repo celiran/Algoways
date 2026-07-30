@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalFooter from "../components/LegalFooter";
 
 export const metadata: Metadata = {
-  title: "תקנון ותנאי שימוש | ALGOWAYS",
+  title: "תקנון ותנאי שימוש",
   description: "תקנון ותנאי השימוש באתר ALGOWAYS.",
+  alternates: { canonical: "/terms" },
+  openGraph: { url: "/terms", title: "תקנון ותנאי שימוש | ALGOWAYS" },
 };
 
 export default function TermsPage() {
   return (
     <main className="legalPage">
       <header className="legalHeader">
-        <a className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
+        <Link className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
-        </a>
-        <a className="legalBack" href="/">
+        </Link>
+        <Link className="legalBack" href="/">
           <span aria-hidden="true">→</span>
           חזרה לדף הראשי
-        </a>
+        </Link>
       </header>
 
       <section className="legalHero">

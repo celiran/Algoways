@@ -1,8 +1,7 @@
-# vinext-starter
+# ALGOWAYS
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+האתר הרשמי שמרכז את האתרים והשירותים של ALGOWAYS. האתר בנוי עם vinext
+ומיועד לפריסה על Cloudflare.
 
 ## Prerequisites
 
@@ -16,7 +15,31 @@ npm run dev
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+## Google Analytics
+
+Google Analytics כבוי כברירת מחדל. כדי להפעיל אותו:
+
+1. יוצרים נכס GA4 ומעתיקים את Measurement ID בפורמט `G-XXXXXXXXXX`.
+2. מגדירים ב־Cloudflare/Sites משתנה סביבה בשם `GOOGLE_ANALYTICS_ID`.
+3. לאחר ההגדרה, האתר יציג בחירה בין ״אישור הכל״ לבין ״רק חיוני״.
+4. סקריפט המדידה נטען רק לאחר אישור מפורש לאנליטיקה.
+
+בפיתוח מקומי אפשר להעתיק את `.env.example` אל `.env` ולהוסיף את המזהה.
+
+## SEO / AEO
+
+- כתובת האתר הקבועה מוגדרת ב־`app/seo-config.ts`.
+- Sitemap זמין ב־`/sitemap.xml`.
+- מדיניות סריקה זמינה ב־`/robots.txt`.
+- אינדקס למנועי תשובות זמין ב־`/llms.txt`.
+- גרסה מורחבת למנועי AI זמינה ב־`/llms-full.txt`.
+- נתוני Organization, WebSite, CollectionPage ו־FAQ מוטמעים כ־JSON-LD.
+- תמונת השיתוף נמצאת ב־`public/og.png`.
+
+לאחר חיבור הדומיין יש להוסיף אותו ל־Google Search Console ול־Bing Webmaster
+Tools, לאמת בעלות ולהגיש את `https://algoways.co.il/sitemap.xml`.
+אפשר להוסיף את קודי האימות בזמן הבנייה דרך
+`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` ו־`NEXT_PUBLIC_BING_SITE_VERIFICATION`.
 
 ## Included Shape
 

@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalFooter from "../components/LegalFooter";
 
 export const metadata: Metadata = {
-  title: "אזהרת סיכון | ALGOWAYS",
+  title: "אזהרת סיכון",
   description:
     "אזהרה חשובה בדבר הסיכונים הכרוכים במסחר, השקעות ומערכות מסחר אלגוריתמיות.",
+  alternates: { canonical: "/risk-disclosure" },
+  openGraph: {
+    url: "/risk-disclosure",
+    title: "אזהרת סיכון והבהרה משפטית | ALGOWAYS",
+  },
 };
 
 export default function RiskDisclosurePage() {
   return (
     <main className="legalPage">
       <header className="legalHeader">
-        <a className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
+        <Link className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
-        </a>
-        <a className="legalBack" href="/">
+        </Link>
+        <Link className="legalBack" href="/">
           <span aria-hidden="true">→</span>
           חזרה לדף הראשי
-        </a>
+        </Link>
       </header>
 
       <section className="legalHero riskHero">

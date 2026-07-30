@@ -1,7 +1,10 @@
+import Link from "next/link";
+import CookieSettingsButton from "./CookieSettingsButton";
 import RiskFooterNotice from "./RiskFooterNotice";
 
 const legalLinks = [
   { href: "/", label: "דף הבית" },
+  { href: "/about", label: "אודות" },
   { href: "/risk-disclosure", label: "אזהרת סיכון" },
   { href: "/terms", label: "תנאי שימוש" },
   { href: "/copyright", label: "זכויות יוצרים" },
@@ -20,10 +23,11 @@ export default function LegalFooter() {
       </div>
       <nav aria-label="מידע משפטי ונגישות">
         {legalLinks.map((link) => (
-          <a href={link.href} key={link.href}>
+          <Link href={link.href} key={link.href}>
             {link.label}
-          </a>
+          </Link>
         ))}
+        <CookieSettingsButton />
       </nav>
     </footer>
   );

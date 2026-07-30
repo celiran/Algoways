@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalFooter from "../components/LegalFooter";
 
 export const metadata: Metadata = {
-  title: "זכויות יוצרים | ALGOWAYS",
+  title: "זכויות יוצרים",
   description: "מדיניות זכויות היוצרים והשימוש בתכני אתר ALGOWAYS.",
+  alternates: { canonical: "/copyright" },
+  openGraph: { url: "/copyright", title: "זכויות יוצרים | ALGOWAYS" },
 };
 
 export default function CopyrightPage() {
   return (
     <main className="legalPage">
       <header className="legalHeader">
-        <a className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
+        <Link className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
-        </a>
-        <a className="legalBack" href="/">
+        </Link>
+        <Link className="legalBack" href="/">
           <span aria-hidden="true">→</span>
           חזרה לדף הראשי
-        </a>
+        </Link>
       </header>
 
       <section className="legalHero">

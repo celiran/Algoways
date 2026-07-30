@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import CookieSettingsButton from "../components/CookieSettingsButton";
 import ContactForm from "../components/ContactForm";
 import RiskFooterNotice from "../components/RiskFooterNotice";
 
 export const metadata: Metadata = {
-  title: "יצירת קשר | ALGOWAYS",
+  title: "יצירת קשר",
   description:
     "השאירו פרטים והודעה קצרה לצוות ALGOWAYS ונחזור אליכם בהקדם.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    title: "יצירת קשר עם ALGOWAYS",
+    description:
+      "השאירו פרטים והודעה קצרה בנושא שירות, שאלה או שיתוף פעולה.",
+  },
 };
 
 const whatsappUrl =
@@ -15,13 +24,13 @@ export default function ContactPage() {
   return (
     <main className="contactPage">
       <header className="contactPageHeader">
-        <a className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
+        <Link className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
-        </a>
-        <a className="legalBack" href="/">
+        </Link>
+        <Link className="legalBack" href="/">
           <span aria-hidden="true">→</span>
           חזרה לדף הראשי
-        </a>
+        </Link>
       </header>
 
       <section className="contactPageMain">
@@ -66,9 +75,11 @@ export default function ContactPage() {
           <RiskFooterNotice />
         </div>
         <nav aria-label="קישורי עמוד יצירת קשר">
-          <a href="/">דף הבית</a>
-          <a href="/privacy">מדיניות פרטיות</a>
-          <a href="/accessibility">נגישות</a>
+          <Link href="/">דף הבית</Link>
+          <Link href="/about">אודות</Link>
+          <Link href="/privacy">מדיניות פרטיות</Link>
+          <Link href="/accessibility">נגישות</Link>
+          <CookieSettingsButton />
         </nav>
       </footer>
     </main>

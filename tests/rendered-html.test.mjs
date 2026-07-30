@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function getWorker() {
@@ -40,10 +41,17 @@ test("server-renders the ALGOWAYS homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>ALGOWAYS — Technology Behind Smarter Markets<\/title>/);
+  assert.match(
+    html,
+    /<title>ALGOWAYS — טכנולוגיה, מסחר ותשתיות לשווקים חכמים<\/title>/,
+  );
   assert.match(html, /מחברים בין/);
   assert.match(html, /href="\/contact"/);
   assert.match(html, /האתרים שלנו/);
+  assert.match(html, /application\/ld\+json/);
+  assert.match(html, /FAQPage/);
+  assert.match(html, /rel="canonical" href="https:\/\/algoways\.co\.il\/"/);
+  assert.doesNotMatch(html, /googletagmanager\.com/);
 });
 
 test("server-renders the short contact form", async () => {
@@ -104,10 +112,35 @@ test("contact API reports an unconfigured Cloudflare email binding safely", asyn
   assert.equal(result.success, false);
 });
 
+test("site config exposes only a valid optional Google Analytics ID", async () => {
+  const worker = await getWorker();
+
+  const disabledResponse = await worker.fetch(
+    new Request("http://localhost/api/site-config"),
+    runtimeEnv(),
+    executionContext,
+  );
+  assert.equal(disabledResponse.status, 200);
+  assert.deepEqual(await disabledResponse.json(), {
+    googleAnalyticsId: null,
+  });
+
+  const enabledResponse = await worker.fetch(
+    new Request("http://localhost/api/site-config"),
+    runtimeEnv({ GOOGLE_ANALYTICS_ID: "g-abc1234567" }),
+    executionContext,
+  );
+  assert.equal(enabledResponse.status, 200);
+  assert.deepEqual(await enabledResponse.json(), {
+    googleAnalyticsId: "G-ABC1234567",
+  });
+});
+
 test("shows the complete risk notice beside the copyright area on every page", async () => {
   const worker = await getWorker();
   const routes = [
     "/",
+    "/about",
     "/contact",
     "/accessibility",
     "/copyright",
@@ -132,10 +165,11 @@ test("shows the complete risk notice beside the copyright area on every page", a
   }
 });
 
-test("shows the storage notice on every page and documents the actual usage", async () => {
+test("shows privacy choices on every page and documents optional analytics", async () => {
   const worker = await getWorker();
   const routes = [
     "/",
+    "/about",
     "/contact",
     "/accessibility",
     "/copyright",
@@ -155,7 +189,7 @@ test("shows the storage notice on every page and documents the actual usage", as
     const html = (await response.text()).replace(/\s+/g, " ");
 
     assert.equal(response.status, 200, route);
-    assert.ok(html.includes("עוגיות ואחסון מקומי"), route);
+    assert.ok(html.includes("פרטיות, עוגיות ואנליטיקה"), route);
     assert.ok(html.includes("אישור והמשך"), route);
     assert.ok(html.includes('href="/privacy#cookies"'), route);
   }
@@ -170,6 +204,36 @@ test("shows the storage notice on every page and documents the actual usage", as
   const privacyHtml = (await privacyResponse.text()).replace(/\s+/g, " ");
 
   assert.match(privacyHtml, /id="cookies"/);
-  assert.match(privacyHtml, /אינו שומר עוגיות שיווקיות מטעמו/);
+  assert.match(privacyHtml, /Google Analytics הוא רכיב אופציונלי/);
   assert.match(privacyHtml, /Cloudflare Turnstile/);
+});
+
+test("publishes the technical SEO and AEO discovery files", async () => {
+  const worker = await getWorker();
+  const sitemapResponse = await worker.fetch(
+    new Request("http://localhost/sitemap.xml"),
+    runtimeEnv(),
+    executionContext,
+  );
+  const sitemapXml = await sitemapResponse.text();
+
+  assert.equal(sitemapResponse.status, 200);
+  assert.match(sitemapXml, /https:\/\/algoways\.co\.il\/about/);
+  assert.match(sitemapXml, /https:\/\/algoways\.co\.il\/contact/);
+
+  const robots = await readFile(
+    new URL("../public/robots.txt", import.meta.url),
+    "utf8",
+  );
+  const llms = await readFile(
+    new URL("../public/llms.txt", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(robots, /User-agent: OAI-SearchBot/);
+  assert.match(robots, /User-agent: PerplexityBot/);
+  assert.match(robots, /Sitemap: https:\/\/algoways\.co\.il\/sitemap\.xml/);
+  assert.match(llms, /^# ALGOWAYS/m);
+  assert.match(llms, /^> ALGOWAYS/m);
+  assert.match(llms, /https:\/\/algoways\.co\.il\/about/);
 });

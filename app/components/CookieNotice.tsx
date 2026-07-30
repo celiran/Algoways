@@ -3,22 +3,56 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const storageKey = "algoways-storage-notice-v1";
+const consentStorageKey = "algoways-consent-v2";
+const consentEventName = "algoways:consent-change";
+
+type SiteConfig = {
+  googleAnalyticsId: string | null;
+};
 
 export default function CookieNotice() {
   const [visible, setVisible] = useState(true);
+  const [analyticsConfigured, setAnalyticsConfigured] = useState(false);
   const noticeRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let animationFrame = 0;
     try {
-      if (window.localStorage.getItem(storageKey) === "accepted") {
+      const savedChoice = window.localStorage.getItem(consentStorageKey);
+      if (savedChoice === "essential" || savedChoice === "analytics") {
         animationFrame = window.requestAnimationFrame(() => setVisible(false));
       }
     } catch {
       // The notice still works for the current visit when storage is unavailable.
     }
     return () => window.cancelAnimationFrame(animationFrame);
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/site-config", {
+      headers: { accept: "application/json" },
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((config: SiteConfig | null) => {
+        if (active) {
+          setAnalyticsConfigured(Boolean(config?.googleAnalyticsId));
+        }
+      })
+      .catch(() => {
+        if (active) setAnalyticsConfigured(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    const openPrivacySettings = () => setVisible(true);
+    window.addEventListener("algoways:open-privacy", openPrivacySettings);
+    return () =>
+      window.removeEventListener("algoways:open-privacy", openPrivacySettings);
   }, []);
 
   useEffect(() => {
@@ -47,13 +81,14 @@ export default function CookieNotice() {
     };
   }, [visible]);
 
-  function acceptNotice() {
+  function chooseConsent(choice: "essential" | "analytics") {
     try {
-      window.localStorage.setItem(storageKey, "accepted");
+      window.localStorage.setItem(consentStorageKey, choice);
     } catch {
       // Dismissing for the current visit is still possible without local storage.
     }
     setVisible(false);
+    window.dispatchEvent(new Event(consentEventName));
   }
 
   if (!visible) return null;
@@ -67,18 +102,37 @@ export default function CookieNotice() {
       aria-describedby="cookie-notice-description"
     >
       <div className="cookieNoticeCopy">
-        <span className="cookieNoticeEyebrow">PRIVACY / STORAGE</span>
-        <h2 id="cookie-notice-title">עוגיות ואחסון מקומי</h2>
+        <span className="cookieNoticeEyebrow">PRIVACY / CONSENT</span>
+        <h2 id="cookie-notice-title">פרטיות, עוגיות ואנליטיקה</h2>
         <p id="cookie-notice-description">
-          האתר משתמש באחסון מקומי חיוני לשמירת העדפות הנגישות ולאישור הודעה
-          זו. בעמוד יצירת הקשר עשוי להיטען Cloudflare Turnstile למניעת ספאם.
-          איננו משתמשים כיום בעוגיות פרסום או בכלי מעקב שיווקיים.
+          האתר משתמש באחסון חיוני לשמירת העדפות נגישות ואבטחה.
+          {analyticsConfigured
+            ? " באפשרותך לאשר גם Google Analytics למדידה אנונימית ושיפור האתר. אין שימוש בפרסום מותאם אישית."
+            : " Google Analytics אינו מופעל כרגע, ולא נעשה שימוש בעוגיות פרסום או בכלי מעקב שיווקיים."}
         </p>
       </div>
       <div className="cookieNoticeActions">
-        <button type="button" onClick={acceptNotice}>
-          אישור והמשך
-        </button>
+        {analyticsConfigured ? (
+          <>
+            <button
+              type="button"
+              onClick={() => chooseConsent("analytics")}
+            >
+              אישור הכל
+            </button>
+            <button
+              className="cookieNoticeSecondary"
+              type="button"
+              onClick={() => chooseConsent("essential")}
+            >
+              רק חיוני
+            </button>
+          </>
+        ) : (
+          <button type="button" onClick={() => chooseConsent("essential")}>
+            אישור והמשך
+          </button>
+        )}
         <Link href="/privacy#cookies">למידע נוסף</Link>
       </div>
     </section>

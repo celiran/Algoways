@@ -209,6 +209,17 @@ img {
   letter-spacing: -0.068em;
 }
 
+.heroBrandName {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--cyan);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.11em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+
 .hero h1 span {
   color: var(--cyan);
   font-weight: 300;
@@ -667,6 +678,70 @@ img {
   margin: 0;
   color: #5a6970;
   line-height: 1.7;
+}
+
+.faqSection {
+  background: #e8eef0;
+  color: var(--navy);
+  border-top: 1px solid var(--line-light);
+}
+
+.faqInner {
+  padding-block: clamp(95px, 10vw, 145px);
+}
+
+.faqIntro {
+  margin-bottom: 72px;
+}
+
+.faqIntro .sectionKicker,
+.faqIntro > p {
+  color: #5b6b73;
+}
+
+.faqList {
+  margin-right: 25%;
+  border-bottom: 1px solid rgba(7, 23, 35, 0.2);
+}
+
+.faqList details {
+  border-top: 1px solid rgba(7, 23, 35, 0.2);
+}
+
+.faqList summary {
+  min-height: 82px;
+  padding: 20px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.faqList summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqList summary span:last-child {
+  color: #4c7d89;
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 1.2rem;
+  transition: transform 180ms ease;
+}
+
+.faqList details[open] summary span:last-child {
+  transform: rotate(45deg);
+}
+
+.faqList details > p {
+  max-width: 780px;
+  margin: -4px 0 0;
+  padding: 0 0 28px;
+  color: #53646c;
+  line-height: 1.85;
 }
 
 .contact {
@@ -1491,6 +1566,18 @@ img {
   border-color: var(--paper);
 }
 
+.cookieNoticeActions .cookieNoticeSecondary {
+  background: transparent;
+  border-color: rgba(220, 231, 235, 0.55);
+  color: #dce7eb;
+}
+
+.cookieNoticeActions .cookieNoticeSecondary:hover {
+  background: rgba(220, 231, 235, 0.1);
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
 .cookieNoticeActions a {
   color: #dce7eb;
   font-size: 0.72rem;
@@ -1499,6 +1586,19 @@ img {
 }
 
 .cookieNoticeActions a:hover {
+  color: var(--cyan);
+}
+
+.cookieSettingsButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.cookieSettingsButton:hover {
   color: var(--cyan);
 }
 
@@ -1779,8 +1879,13 @@ html.a11y-reduce-motion *::after {
   }
 
   .groupInner,
-  .contactInner {
+  .contactInner,
+  .faqInner {
     grid-template-columns: 1fr;
+  }
+
+  .faqList {
+    margin-right: 0;
   }
 
   .legacyNoticeInner {
@@ -1903,8 +2008,23 @@ html.a11y-reduce-motion *::after {
 
   .portfolio,
   .resourcesInner,
-  .groupInner {
+  .groupInner,
+  .faqInner {
     padding-block: 88px;
+  }
+
+  .faqIntro {
+    margin-bottom: 42px;
+  }
+
+  .faqList summary {
+    min-height: 76px;
+    padding-block: 18px;
+    font-size: 0.96rem;
+  }
+
+  .faqList details > p {
+    font-size: 0.84rem;
   }
 
   .sectionIntro {
