@@ -131,3 +131,45 @@ test("shows the complete risk notice beside the copyright area on every page", a
     assert.ok(html.includes(riskText), route);
   }
 });
+
+test("shows the storage notice on every page and documents the actual usage", async () => {
+  const worker = await getWorker();
+  const routes = [
+    "/",
+    "/contact",
+    "/accessibility",
+    "/copyright",
+    "/privacy",
+    "/risk-disclosure",
+    "/terms",
+  ];
+
+  for (const route of routes) {
+    const response = await worker.fetch(
+      new Request(`http://localhost${route}`, {
+        headers: { accept: "text/html" },
+      }),
+      runtimeEnv(),
+      executionContext,
+    );
+    const html = (await response.text()).replace(/\s+/g, " ");
+
+    assert.equal(response.status, 200, route);
+    assert.ok(html.includes("עוגיות ואחסון מקומי"), route);
+    assert.ok(html.includes("אישור והמשך"), route);
+    assert.ok(html.includes('href="/privacy#cookies"'), route);
+  }
+
+  const privacyResponse = await worker.fetch(
+    new Request("http://localhost/privacy", {
+      headers: { accept: "text/html" },
+    }),
+    runtimeEnv(),
+    executionContext,
+  );
+  const privacyHtml = (await privacyResponse.text()).replace(/\s+/g, " ");
+
+  assert.match(privacyHtml, /id="cookies"/);
+  assert.match(privacyHtml, /אינו שומר עוגיות שיווקיות מטעמו/);
+  assert.match(privacyHtml, /Cloudflare Turnstile/);
+});

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import LegalFooter from "../components/LegalFooter";
 
 export const metadata: Metadata = {
@@ -10,13 +11,13 @@ export default function PrivacyPage() {
   return (
     <main className="legalPage">
       <header className="legalHeader">
-        <a className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
+        <Link className="logoPlate" href="/" aria-label="ALGOWAYS — דף הבית">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
-        </a>
-        <a className="legalBack" href="/">
+        </Link>
+        <Link className="legalBack" href="/">
           <span aria-hidden="true">→</span>
           חזרה לדף הראשי
-        </a>
+        </Link>
       </header>
 
       <section className="legalHero">
@@ -27,7 +28,7 @@ export default function PrivacyPage() {
             <br />
             <span>פרטיות.</span>
           </h1>
-          <div className="legalMeta">עודכן לאחרונה: יולי 2026</div>
+          <div className="legalMeta">עודכן לאחרונה: 30 ביולי 2026</div>
         </div>
       </section>
 
@@ -84,16 +85,27 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section>
-            <h2>4. Cookies וכלי מדידה</h2>
+          <section id="cookies">
+            <h2>4. עוגיות, אחסון מקומי וכלי מדידה</h2>
             <p>
-              האתר עשוי להשתמש בקובצי Cookies חיוניים ובכלי מדידה מקובלים.
-              קבצים אלה יכולים לסייע בתפעול תקין, אבטחה, שמירת העדפות והבנת
-              דפוסי שימוש.
+              האתר אינו מפעיל כיום כלי פרסום, רימרקטינג או ניתוח התנהגותי,
+              ואינו שומר עוגיות שיווקיות מטעמו.
             </p>
             <p>
-              ניתן לחסום או למחוק Cookies דרך הגדרות הדפדפן. חסימה עשויה
-              להשפיע על חלק מהתכונות, אם יופעלו בעתיד.
+              האתר משתמש באחסון המקומי של הדפדפן (Local Storage) לצורך שמירת
+              העדפות הנגישות ולצורך תיעוד אישור הודעת האחסון. מידע זה נשמר
+              במכשיר ואינו כולל את פרטי הפנייה שנמסרים בטופס יצירת הקשר.
+            </p>
+            <p>
+              בעמוד יצירת הקשר עשוי להיטען שירות Cloudflare Turnstile לצורך
+              אבטחה ומניעת ספאם. במסגרת הפעלתו עשוי Cloudflare לעבד מידע טכני
+              בסיסי בהתאם למדיניות הפרטיות שלו.
+            </p>
+            <p>
+              ניתן למחוק את נתוני האחסון המקומי ואת העוגיות דרך הגדרות
+              הדפדפן. מחיקה תאפס את העדפות הנגישות ותגרום להצגת הודעת האחסון
+              מחדש. אם יתווספו בעתיד כלי מדידה או שיווק שאינם חיוניים, מדיניות
+              זו ומנגנון הבחירה יעודכנו לפני הפעלתם.
             </p>
           </section>
 

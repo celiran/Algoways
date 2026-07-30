@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import AccessibilityMenu from "./components/AccessibilityMenu";
+import CookieNotice from "./components/CookieNotice";
 import "./globals.css";
 
 const bodyFont = Heebo({
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="he" dir="rtl">
       <body className={`${bodyFont.variable} ${displayFont.variable}`}>
         {children}
+        <CookieNotice />
         <AccessibilityMenu />
       </body>
     </html>
