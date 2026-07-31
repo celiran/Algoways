@@ -43,6 +43,8 @@ export default function AccessibilityMenu() {
   const launcherRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    let animationFrame = 0;
+
     try {
       const saved = window.localStorage.getItem("algoways-accessibility");
       if (saved) {
@@ -50,12 +52,16 @@ export default function AccessibilityMenu() {
           ...defaultSettings,
           ...(JSON.parse(saved) as Partial<AccessibilitySettings>),
         };
-        setSettings(parsed);
-        applySettings(parsed);
+        animationFrame = window.requestAnimationFrame(() => {
+          setSettings(parsed);
+          applySettings(parsed);
+        });
       }
     } catch {
       applySettings(defaultSettings);
     }
+
+    return () => window.cancelAnimationFrame(animationFrame);
   }, []);
 
   useEffect(() => {
