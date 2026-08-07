@@ -549,11 +549,25 @@ html.motion-ready:not(.motion-reduced):not(.a11y-reduce-motion) [data-reveal="ca
 }
 
 .ventureLogo.algocourses {
-  background: #06182c;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
 }
 
 .ventureLogo.algocourses img {
-  max-height: 72px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(420px, calc(100% - 50px));
+  max-width: none;
+  max-height: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.venture:hover .ventureLogo.algocourses img,
+.venture:focus-visible .ventureLogo.algocourses img {
+  transform: translate(-50%, -50%) scale(1.045);
 }
 
 .ventureLogo.algotradecrypto img {
@@ -2034,6 +2048,10 @@ html.a11y-reduce-motion *::after {
 
   .ventureLogo {
     grid-row: 2;
+  }
+
+  .ventureLogo.algocourses img {
+    width: min(360px, calc(100% - 32px));
   }
 
   .venture p {
