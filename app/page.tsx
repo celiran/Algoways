@@ -20,7 +20,7 @@ const ventures = [
     category: "אקדמיה לאלגו",
     description:
       "קורסים מקצועיים בעברית לבניית מערכות מסחר אוטומטיות עם AI, ‏MT4/MT5 ופייתון.",
-    logo: "/logos/algocourses.png",
+    logo: "/logos/algocourses-white.png",
     href: "https://algocourses.com/",
     className: "algocourses",
   },
