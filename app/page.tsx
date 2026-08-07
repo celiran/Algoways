@@ -246,10 +246,6 @@ export default function Home() {
         <a className="logoPlate" href="#top" aria-label="ALGOWAYS — ראש העמוד">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
         </a>
-        <div className="headerStatus" aria-label="פרטי הפעילות">
-          <span className="statusDot" />
-          <span>ISRAEL / EST. 2011</span>
-        </div>
         <nav aria-label="ניווט ראשי">
           <a href="#portfolio">האתרים שלנו</a>
           <a href="#resources">שירותים נוספים</a>

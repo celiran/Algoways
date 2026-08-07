@@ -80,7 +80,7 @@ img {
   height: 100px;
   border-bottom: 1px solid var(--line-dark);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
 }
 
@@ -106,25 +106,6 @@ img {
 .logoPlate:focus-visible {
   border-color: var(--cyan);
   background: #fff;
-}
-
-.headerStatus {
-  direction: ltr;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--steel);
-  font-family: ui-monospace, "Cascadia Code", monospace;
-  font-size: 0.67rem;
-  letter-spacing: 0.12em;
-}
-
-.statusDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--mint);
-  box-shadow: 0 0 12px rgba(114, 208, 160, 0.8);
 }
 
 .siteHeader nav {
@@ -1908,10 +1889,6 @@ html.a11y-reduce-motion *::after {
     width: 144px;
     min-height: 46px;
     padding-inline: 10px;
-  }
-
-  .headerStatus {
-    display: none;
   }
 
   .headerContact {
