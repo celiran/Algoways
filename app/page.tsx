@@ -1,4 +1,5 @@
 import JsonLd from "./components/JsonLd";
+import MotionObserver from "./components/MotionObserver";
 import RiskFooterNotice from "./components/RiskFooterNotice";
 import { seoConfig } from "./seo-config";
 
@@ -15,16 +16,26 @@ const ventures = [
   },
   {
     number: "02",
-    name: "Algotra",
-    category: "אלגוריתמים והון",
+    name: "AlgoCourses",
+    category: "אקדמיה לאלגו",
     description:
-      "פלטפורמה המחברת בין בעלי אלגוריתמים, מערכות מסחר ומשקיעים שמחפשים טכנולוגיה עובדת.",
-    logo: "/logos/algotra.png",
-    href: "https://www.algotra.com/algotra/",
-    className: "algotra",
+      "קורסים מקצועיים בעברית לבניית מערכות מסחר אוטומטיות עם AI, ‏MT4/MT5 ופייתון.",
+    logo: "/logos/algocourses.png",
+    href: "https://algocourses.com/",
+    className: "algocourses",
   },
   {
     number: "03",
+    name: "ALGOrp",
+    category: "ניתוח דוחות מסחר",
+    description:
+      "מערכת ניתוח דוחות מסחר של רוב הפלטפורמות הגדולות, עם מדדי ביצועים, ניתוח סיכון ותובנות AI.",
+    logo: "",
+    href: "https://algorp.com/",
+    className: "algorp",
+  },
+  {
+    number: "04",
     name: "AlgoServers",
     category: "תשתיות למסחר",
     description:
@@ -32,16 +43,6 @@ const ventures = [
     logo: "/logos/algoservers.png",
     href: "https://www.algoservers.com/site/",
     className: "algoservers",
-  },
-  {
-    number: "04",
-    name: "ScanFin",
-    category: "כלים פיננסיים",
-    description:
-      "כלים ושירותים שעוזרים לסוחרים לעבוד עם מידע פיננסי בצורה יעילה וממוקדת.",
-    logo: "/logos/scanfin.png",
-    href: "https://www.scanfin.com/",
-    className: "scanfin",
   },
   {
     number: "05",
@@ -55,23 +56,23 @@ const ventures = [
   },
   {
     number: "06",
-    name: "AlgoCourses",
-    category: "אקדמיה לאלגו",
+    name: "Algotra",
+    category: "אלגוריתמים והון",
     description:
-      "קורסים מקצועיים בעברית לבניית מערכות מסחר אוטומטיות עם AI, ‏MT4/MT5 ופייתון.",
-    logo: "/logos/algocourses.png",
-    href: "https://algocourses.com/",
-    className: "algocourses",
+      "פלטפורמה המחברת בין בעלי אלגוריתמים, מערכות מסחר ומשקיעים שמחפשים טכנולוגיה עובדת.",
+    logo: "/logos/algotra.png",
+    href: "https://www.algotra.com/algotra/",
+    className: "algotra",
   },
   {
     number: "07",
-    name: "ALGOrp",
-    category: "ניתוח דוחות מסחר",
+    name: "ScanFin",
+    category: "כלים פיננסיים",
     description:
-      "מערכת ניתוח דוחות מסחר של רוב הפלטפורמות הגדולות, עם מדדי ביצועים, ניתוח סיכון ותובנות AI.",
-    logo: "",
-    href: "https://algorp.com/",
-    className: "algorp",
+      "כלים ושירותים שעוזרים לסוחרים לעבוד עם מידע פיננסי בצורה יעילה וממוקדת.",
+    logo: "/logos/scanfin.png",
+    href: "https://www.scanfin.com/",
+    className: "scanfin",
   },
   {
     number: "08",
@@ -242,6 +243,7 @@ export default function Home() {
   return (
     <main>
       <JsonLd data={homepageSchema} />
+      <MotionObserver />
       <header className="siteHeader">
         <a className="logoPlate" href="#top" aria-label="ALGOWAYS — ראש העמוד">
           <img src="/logos/algoways-wordmark-2026-trim.png" alt="ALGOWAYS" />
@@ -267,9 +269,10 @@ export default function Home() {
           <p className="heroEyebrow">טכנולוגיה מאחורי שווקים חכמים</p>
           <h1>
             <small className="heroBrandName">ALGOWAYS</small>
-            מחברים בין
-            <br />
-            <span>טכנולוגיה, מסחר ואנשים.</span>
+            <span className="heroLine">מחברים בין</span>
+            <span className="heroLine heroLineAccent">
+              טכנולוגיה, מסחר ואנשים.
+            </span>
           </h1>
           <div className="heroCopy">
             <div className="heroCopyText">
@@ -312,7 +315,7 @@ export default function Home() {
       </section>
 
       <section className="portfolio sectionShell" id="portfolio">
-        <div className="sectionIntro">
+        <div className="sectionIntro" data-reveal="up">
           <div>
             <span className="sectionNumber">01</span>
             <span className="sectionKicker">האתרים שלנו</span>
@@ -332,6 +335,7 @@ export default function Home() {
           {ventures.map((venture) => (
             <a
               className="venture"
+              data-reveal="card"
               href={venture.href}
               target="_blank"
               rel="noreferrer"
@@ -366,7 +370,7 @@ export default function Home() {
 
       <section className="resources" id="resources">
         <div className="sectionShell resourcesInner">
-          <div className="sectionIntro resourcesIntro">
+          <div className="sectionIntro resourcesIntro" data-reveal="up">
             <div>
               <span className="sectionNumber">02</span>
               <span className="sectionKicker">אתרים ושירותים נוספים שלנו</span>
@@ -384,7 +388,12 @@ export default function Home() {
 
           <div className="resourceGrid">
             {resourceGroups.map((group) => (
-              <details className="resourceGroup" open key={group.title}>
+              <details
+                className="resourceGroup"
+                data-reveal="card"
+                open
+                key={group.title}
+              >
                 <summary>
                   <span className="resourceNumber">{group.number}</span>
                   <span className="resourceHeading">
@@ -416,7 +425,7 @@ export default function Home() {
 
       <section className="faqSection" id="faq">
         <div className="sectionShell faqInner">
-          <div className="sectionIntro faqIntro">
+          <div className="sectionIntro faqIntro" data-reveal="up">
             <div>
               <span className="sectionNumber">03</span>
               <span className="sectionKicker">שאלות נפוצות</span>
@@ -434,7 +443,7 @@ export default function Home() {
 
           <div className="faqList">
             {faqItems.map((item) => (
-              <details key={item.question}>
+              <details data-reveal="up" key={item.question}>
                 <summary>
                   <span>{item.question}</span>
                   <span aria-hidden="true">+</span>
@@ -449,11 +458,11 @@ export default function Home() {
       <section className="contact" id="contact">
         <div className="contactGrid" aria-hidden="true" />
         <div className="sectionShell contactInner">
-          <div>
+          <div data-reveal="up">
             <span className="sectionNumber">04</span>
             <span className="sectionKicker">יצירת קשר</span>
           </div>
-          <div className="contactContent">
+          <div className="contactContent" data-reveal="up">
             <p>יש לכם רעיון, שאלה או הזדמנות לשיתוף פעולה?</p>
             <h2>
               בואו נתחיל
