@@ -5,6 +5,7 @@ import CookieNotice from "./components/CookieNotice";
 import GlobalLegalNav from "./components/GlobalLegalNav";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import JsonLd from "./components/JsonLd";
+import WhatsAppButton from "./components/WhatsAppButton";
 import { mainSiteLinks, seoConfig } from "./seo-config";
 import "./globals.css";
 
@@ -118,6 +119,7 @@ const organizationSchema = {
   contactPoint: {
     "@type": "ContactPoint",
     url: `${seoConfig.siteUrl}/contact`,
+    email: "support@algoways.co.il",
     contactType: "customer service",
     availableLanguage: ["he", "en"],
   },
@@ -168,6 +170,7 @@ export default function RootLayout({
         <GlobalLegalNav />
         <GoogleAnalytics />
         <CookieNotice />
+        <WhatsAppButton />
         <AccessibilityMenu />
       </body>
     </html>

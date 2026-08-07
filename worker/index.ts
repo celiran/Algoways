@@ -168,9 +168,14 @@ async function handleContactRequest(
     const verification = (await verificationResponse.json()) as {
       success?: boolean;
       action?: string;
+      hostname?: string;
     };
 
-    if (!verification.success || verification.action !== "contact_form") {
+    if (
+      !verification.success ||
+      verification.action !== "contact_form" ||
+      verification.hostname !== new URL(request.url).hostname
+    ) {
       return json(
         {
           success: false,

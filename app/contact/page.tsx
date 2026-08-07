@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "../components/ContactForm";
 import RiskFooterNotice from "../components/RiskFooterNotice";
+import { whatsappUrl } from "../components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "יצירת קשר",
@@ -16,8 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-const whatsappUrl =
-  "https://api.whatsapp.com/send/?phone=972528249299&text=%D7%94%D7%99%D7%99%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%90%D7%AA%D7%A8%20ALGOWAYS";
+const supportEmail = "support@algoways.co.il";
 
 export default function ContactPage() {
   return (
@@ -47,12 +47,43 @@ export default function ContactPage() {
               הפרטים החשובים והודעה.
             </p>
 
-            <div className="contactDirect">
-              <span>מעדיפים הודעה ישירה?</span>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                WhatsApp · 052-824-9299
-                <span aria-hidden="true">↗</span>
-              </a>
+            <div className="contactInfoCards" aria-label="פרטי יצירת קשר">
+              <article className="contactInfoCard">
+                <div className="contactInfoCardHeading">
+                  <span className="contactInfoIcon" aria-hidden="true">
+                    ✉
+                  </span>
+                  <h2>אימייל</h2>
+                </div>
+                <p>ניתן לפנות אלינו גם ישירות במייל</p>
+                <a href={`mailto:${supportEmail}`} dir="ltr">
+                  {supportEmail}
+                </a>
+              </article>
+
+              <article className="contactInfoCard">
+                <div className="contactInfoCardHeading">
+                  <span className="contactInfoIcon" aria-hidden="true">
+                    ◷
+                  </span>
+                  <h2>זמני מענה</h2>
+                </div>
+                <p>אנחנו משתדלים לחזור לכל פנייה בתוך 24–48 שעות בימי עבודה.</p>
+              </article>
+
+              <article className="contactInfoCard contactInfoCardWhatsApp">
+                <div className="contactInfoCardHeading">
+                  <span className="contactInfoIcon" aria-hidden="true">
+                    ✆
+                  </span>
+                  <h2>WhatsApp</h2>
+                </div>
+                <p>מעדיפים הודעה קצרה? אפשר לפנות אלינו ישירות ב־WhatsApp.</p>
+                <a href={whatsappUrl} target="_blank" rel="noreferrer">
+                  שליחת הודעה ל־ALGOWAYS
+                  <span aria-hidden="true"> ↗</span>
+                </a>
+              </article>
             </div>
           </div>
 

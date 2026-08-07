@@ -1096,36 +1096,97 @@ html.motion-ready:not(.motion-reduced):not(.a11y-reduce-motion) [data-reveal="ca
   line-height: 1.85;
 }
 
-.contactDirect {
+.contactInfoCards {
   max-width: 440px;
-  margin-top: 54px;
-  padding-top: 22px;
-  border-top: 1px solid var(--line-dark);
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 9px;
+  margin-top: 44px;
+  display: grid;
+  gap: 16px;
 }
 
-.contactDirect > span {
-  color: var(--steel);
-  font-size: 0.7rem;
+.contactInfoCard {
+  padding: 24px 26px 25px;
+  border: 1px solid rgba(119, 174, 186, 0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(119, 174, 186, 0.08), transparent 58%),
+    rgba(8, 21, 32, 0.72);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.contactDirect a {
-  direction: ltr;
+.contactInfoCard:hover {
+  border-color: rgba(119, 174, 186, 0.58);
+  transform: translateY(-2px);
+}
+
+.contactInfoCardHeading {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #d9e5e9;
-  font-size: 0.82rem;
-  transition: color 180ms ease, gap 180ms ease;
+  gap: 13px;
 }
 
-.contactDirect a:hover,
-.contactDirect a:focus-visible {
-  gap: 15px;
+.contactInfoCardHeading h2 {
+  margin: 0;
+  color: var(--paper);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.contactInfoIcon {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(119, 174, 186, 0.5);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
   color: var(--cyan);
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.contactInfoCard p {
+  margin: 17px 0 0;
+  color: var(--mist);
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
+
+.contactInfoCard a {
+  display: inline-block;
+  margin-top: 8px;
+  color: #d9e5e9;
+  font-size: 0.83rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: rgba(119, 174, 186, 0.45);
+  text-underline-offset: 5px;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.contactInfoCard a:hover,
+.contactInfoCard a:focus-visible {
+  color: var(--cyan);
+  text-decoration-color: currentColor;
+}
+
+.contactInfoCardWhatsApp {
+  border-color: rgba(37, 211, 102, 0.28);
+  background:
+    linear-gradient(135deg, rgba(37, 211, 102, 0.08), transparent 58%),
+    rgba(8, 21, 32, 0.72);
+}
+
+.contactInfoCardWhatsApp .contactInfoIcon {
+  border-color: rgba(37, 211, 102, 0.58);
+  color: #55e47f;
+}
+
+.contactInfoCardWhatsApp:hover {
+  border-color: rgba(37, 211, 102, 0.58);
 }
 
 .contactFormPanel {
@@ -1235,9 +1296,49 @@ html.motion-ready:not(.motion-reduced):not(.a11y-reduce-motion) [data-reveal="ca
   white-space: nowrap !important;
 }
 
+.contactSecurity {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #d8e1e7;
+  border-radius: 18px;
+  background: #f8fafb;
+  color: #263945;
+}
+
+.contactSecurityHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contactSecurityIcon {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #2469df;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #2469df;
+  font-size: 0.72rem;
+}
+
+.contactSecurityHeading p {
+  margin: 0;
+  color: #2469df;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.contactSecurityHeading p span {
+  margin-right: 7px;
+  color: #647c8c;
+  font-weight: 400;
+}
+
 .contactTurnstile {
   min-height: 66px;
-  padding-top: 22px;
+  padding-top: 18px;
+  overflow-x: auto;
   direction: ltr;
 }
 
@@ -1301,19 +1402,11 @@ html.motion-ready:not(.motion-reduced):not(.a11y-reduce-motion) [data-reveal="ca
   cursor: wait;
 }
 
-.contactConnectionNote,
 .contactFormStatus {
   margin: 20px 0 0;
   color: #657983;
   font-size: 0.68rem;
   line-height: 1.6;
-}
-
-.contactConnectionNote {
-  padding: 10px 12px;
-  border-right: 2px solid #bd8b53;
-  background: rgba(189, 139, 83, 0.07);
-  color: #a99a88;
 }
 
 .contactFormStatus.isError {
@@ -1565,6 +1658,51 @@ html.motion-ready:not(.motion-reduced):not(.a11y-reduce-motion) [data-reveal="ca
   left: 22px;
   direction: rtl;
   transition: bottom 180ms ease;
+}
+
+.whatsappFloat {
+  position: fixed;
+  z-index: 100;
+  right: 22px;
+  bottom: 20px;
+  min-height: 52px;
+  padding: 10px 18px 10px 22px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: #25d366;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+  color: #07130b;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  direction: rtl;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: bottom 180ms ease, background 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.whatsappFloat:hover,
+.whatsappFloat:focus-visible {
+  background: #55e47f;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.36);
+  color: #07130b;
+  transform: translateY(-3px);
+}
+
+.whatsappFloatIcon {
+  width: 31px;
+  height: 31px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.cookieNotice ~ .whatsappFloat {
+  bottom: calc(20px + var(--cookie-notice-height, 0px) + 12px);
 }
 
 .cookieNotice {
@@ -2224,8 +2362,12 @@ html.a11y-reduce-motion *::after {
     font-size: 0.9rem;
   }
 
-  .contactDirect {
+  .contactInfoCards {
     margin-top: 38px;
+  }
+
+  .contactInfoCard {
+    padding: 21px 20px 22px;
   }
 
   .contactFormTopline {
@@ -2257,6 +2399,19 @@ html.a11y-reduce-motion *::after {
     min-height: 128px;
   }
 
+  .contactSecurity {
+    padding: 17px 14px;
+  }
+
+  .contactSecurityHeading {
+    align-items: flex-start;
+  }
+
+  .contactSecurityHeading p span {
+    display: block;
+    margin: 3px 0 0;
+  }
+
   .contactFormFooter {
     grid-template-columns: 1fr;
     gap: 22px;
@@ -2284,6 +2439,19 @@ html.a11y-reduce-motion *::after {
     left: 14px;
   }
 
+  .whatsappFloat {
+    right: 14px;
+    bottom: 14px;
+    min-height: 48px;
+    padding: 8px 14px 8px 17px;
+    font-size: 0.8rem;
+  }
+
+  .whatsappFloatIcon {
+    width: 29px;
+    height: 29px;
+  }
+
   .cookieNotice {
     right: 12px;
     bottom: 12px;
@@ -2302,6 +2470,10 @@ html.a11y-reduce-motion *::after {
     bottom: calc(
       var(--accessibility-bottom, 82px) + var(--cookie-notice-height, 0px) + 10px
     );
+  }
+
+  .cookieNotice ~ .whatsappFloat {
+    bottom: calc(14px + var(--cookie-notice-height, 0px) + 10px);
   }
 
   .accessibilityLauncher {

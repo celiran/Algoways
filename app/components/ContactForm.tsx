@@ -15,7 +15,7 @@ type TurnstileApi = {
     options: {
       sitekey: string;
       action: string;
-      theme: "dark";
+      theme: "light";
       callback: (token: string) => void;
       "expired-callback": () => void;
       "error-callback": () => void;
@@ -32,7 +32,7 @@ declare global {
 }
 
 const defaultError =
-  "לא הצלחנו לשלוח את ההודעה כרגע. אפשר לנסות שוב או לפנות אלינו ב־WhatsApp.";
+  "לא הצלחנו לשלוח את ההודעה כרגע. אפשר לנסות שוב או לשלוח מייל ל־support@algoways.co.il.";
 
 export default function ContactForm() {
   const [config, setConfig] = useState<ContactConfig | null>(null);
@@ -91,7 +91,7 @@ export default function ContactForm() {
         {
           sitekey: siteKey,
           action: "contact_form",
-          theme: "dark",
+          theme: "light",
           callback: setTurnstileToken,
           "expired-callback": () => setTurnstileToken(""),
           "error-callback": () => {
@@ -217,8 +217,6 @@ export default function ContactForm() {
   }
 
   const isSubmitting = status === "submitting";
-  const isReady = config?.configured === true;
-
   return (
     <form className="contactForm" onSubmit={handleSubmit}>
       <div className="contactFields">
@@ -297,11 +295,18 @@ export default function ContactForm() {
       </div>
 
       {config?.turnstileSiteKey ? (
-        <div
-          ref={turnstileContainer}
-          className="contactTurnstile"
-          aria-label="אימות אבטחה"
-        />
+        <section className="contactSecurity" aria-label="אימות אבטחה">
+          <div className="contactSecurityHeading">
+            <span className="contactSecurityIcon" aria-hidden="true">
+              ◇
+            </span>
+            <p>
+              אימות אבטחה
+              <span>נדרש כדי למנוע שליחה אוטומטית מבוטים</span>
+            </p>
+          </div>
+          <div ref={turnstileContainer} className="contactTurnstile" />
+        </section>
       ) : null}
 
       <div className="contactFormFooter">
@@ -328,12 +333,6 @@ export default function ContactForm() {
           <span aria-hidden="true">↗</span>
         </button>
       </div>
-
-      {!isReady && config !== null ? (
-        <p className="contactConnectionNote">
-          הטופס מוכן לחיבור ל־Cloudflare. השליחה תופעל לאחר הגדרת המייל.
-        </p>
-      ) : null}
 
       {status === "error" ? (
         <p className="contactFormStatus isError" role="alert">

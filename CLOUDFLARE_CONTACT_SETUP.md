@@ -31,25 +31,35 @@
 לדוגמה:
 
 ```dotenv
-CONTACT_DESTINATION_EMAIL="your-inbox@gmail.com"
+CONTACT_DESTINATION_EMAIL="verified-destination@example.com"
 ```
 
-אפשר לשנות אותה בהמשך בלי לשנות את קוד האתר.
+זו חייבת להיות התיבה האמיתית שאומתה תחת `Destination Addresses`, ולא כתובת
+ההפניה `support@algoways.co.il`. הכתובת אינה מוצגת באתר.
 
-## שלב 2 — הפעלת Cloudflare Email Service
+כדי שגם הודעות רגילות שנשלחות לכתובת הזו יגיעו לתיבה פעילה:
 
-1. היכנסו ל־Cloudflare Dashboard.
-2. עברו אל `Compute` ואז `Email Service` ואז `Email Sending`.
-3. לחצו `Onboard Domain` ובחרו את `algoways.co.il`.
-4. המתינו עד שהדומיין ומפתחות SPF/DKIM מסומנים כפעילים.
-5. בחרו כתובת שולח, לדוגמה:
+1. עברו אל `Compute` ואז `Email Service` ואז `Email Routing`.
+2. תחת `Destination Addresses` הוסיפו את התיבה האמיתית שאליה תרצו לקבל
+   הודעות, ופתחו את הודעת האימות ש־Cloudflare שולח אליה.
+3. תחת `Routing Rules` צרו כלל עבור `support@algoways.co.il` ובחרו את כתובת
+   היעד המאומתת.
+4. שלחו מייל בדיקה מחשבון אחר אל `support@algoways.co.il` וודאו שהוא מגיע.
+
+כתובת היעד המאומתת יכולה להיות תיבה קיימת ב־Gmail, Google Workspace,
+Microsoft 365 או ספק מייל אחר. היא אינה מוצגת באתר.
+
+## שלב 2 — שליחה חינמית לתיבה המאומתת
+
+אין צורך להפעיל את `Email Sending` בתשלום. Cloudflare מאפשר לשלוח מתוך Worker
+בחינם כאשר הנמען הוא `Destination Address` מאומת בחשבון. כתובת השולח נשארת:
 
 ```dotenv
-CONTACT_FROM_EMAIL="contact@algoways.co.il"
+CONTACT_FROM_EMAIL="support@algoways.co.il"
 ```
 
-כתובת השולח חייבת להיות תחת דומיין שהופעל ב־Email Service. אין להשתמש
-בכתובת Gmail ככתובת השולח. כתובת Gmail יכולה לשמש ככתובת היעד.
+כתובת השולח חייבת להיות תחת הדומיין שמופעל ב־Email Routing. כתובת Gmail או
+תיבה אחרת יכולה לשמש ככתובת היעד המאומתת בלבד.
 
 ## שלב 3 — חיבור Email ל־Worker
 

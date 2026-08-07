@@ -50,6 +50,7 @@ test("server-renders the ALGOWAYS homepage", async () => {
   assert.match(html, /האתרים שלנו/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /FAQPage/);
+  assert.match(html, /web\.whatsapp\.com\/send\?phone=972528249299/);
   assert.match(html, /rel="canonical" href="https:\/\/algoways\.co\.il\/"/);
   assert.match(html, /אנחנו עובדים מתוך מומחיות ממוקדת/);
   assert.doesNotMatch(html, /ALGOWAYS \/ OPERATING PRINCIPLES/);
@@ -76,6 +77,11 @@ test("server-renders the short contact form", async () => {
   assert.match(html, /name="phone"/);
   assert.match(html, /name="message"/);
   assert.match(html, /name="privacy"/);
+  assert.match(html, /mailto:support@algoways\.co\.il/);
+  assert.match(html, /24–48 שעות בימי עבודה/);
+  assert.match(html, /web\.whatsapp\.com\/send\?phone=972528249299/);
+  assert.match(html, /שליחת הודעה ל־ALGOWAYS/);
+  assert.doesNotMatch(html, /הטופס מוכן לחיבור ל־Cloudflare/);
   assert.doesNotMatch(html, /name="subject"/);
 });
 
@@ -113,6 +119,26 @@ test("contact API reports an unconfigured Cloudflare email binding safely", asyn
   assert.equal(submitResponse.status, 503);
   const result = await submitResponse.json();
   assert.equal(result.success, false);
+
+  const configuredResponse = await worker.fetch(
+    new Request("http://localhost/api/contact", {
+      headers: { accept: "application/json" },
+    }),
+    runtimeEnv({
+      EMAIL: { send: async () => ({ messageId: "test-message" }) },
+      CONTACT_DESTINATION_EMAIL: "verified@example.com",
+      CONTACT_FROM_EMAIL: "support@algoways.co.il",
+      TURNSTILE_SITE_KEY: "test-site-key",
+      TURNSTILE_SECRET_KEY: "test-secret-key",
+    }),
+    executionContext,
+  );
+
+  assert.equal(configuredResponse.status, 200);
+  assert.deepEqual(await configuredResponse.json(), {
+    configured: true,
+    turnstileSiteKey: "test-site-key",
+  });
 });
 
 test("site config exposes only a valid optional Google Analytics ID", async () => {
