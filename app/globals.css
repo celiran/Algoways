@@ -164,6 +164,8 @@ img {
   min-height: 100svh;
   padding: 150px 60px 46px;
   background: var(--navy);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   isolation: isolate;
 }
@@ -191,6 +193,7 @@ img {
 
 .heroContent {
   padding-top: clamp(38px, 6vh, 68px);
+  padding-bottom: clamp(32px, 5vh, 58px);
 }
 
 .heroEyebrow {
@@ -302,10 +305,10 @@ img {
 .dataGraph i:nth-child(12) { height: 100%; }
 
 .heroStats {
-  position: absolute;
-  right: 60px;
-  bottom: 42px;
-  left: 60px;
+  position: static;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-top: auto;
   padding-top: 20px;
   border-top: 1px solid var(--line-dark);
   display: grid;
@@ -1827,11 +1830,6 @@ html.a11y-reduce-motion *::after {
     width: 100%;
   }
 
-  .heroStats {
-    right: 24px;
-    left: 24px;
-  }
-
   .sectionIntro {
     grid-template-columns: 1fr;
     gap: 35px;
@@ -1952,9 +1950,6 @@ html.a11y-reduce-motion *::after {
   }
 
   .heroStats {
-    right: 16px;
-    bottom: 30px;
-    left: 16px;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -2219,12 +2214,46 @@ html.a11y-reduce-motion *::after {
   }
 
   .accessibilityLauncher {
-    min-width: 102px;
+    width: 48px;
+    min-width: 48px;
     min-height: 46px;
+    padding: 8px;
+  }
+
+  .accessibilityLauncher > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 
   .accessibilityPanel {
     width: min(340px, calc(100vw - 28px));
+  }
+}
+
+@media (max-height: 520px) and (min-width: 681px) {
+  .accessibilityWidget {
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .accessibilityLauncher {
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 8px;
+  }
+
+  .accessibilityLauncher > span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 }
 
